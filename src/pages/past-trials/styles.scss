@@ -1,0 +1,58 @@
+.past-trials {
+  padding: 20px 150px;
+
+  &__banner {
+    background-color: #ebebeb;
+    color: gray;
+    font-size: 0.9rem;
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    padding: 20px 45px 20px 30px;
+    position: relative;
+
+    &-title {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+
+      span {
+        color: #000000;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+    }
+
+    &-close-icon {
+      position: absolute;
+
+      height: 30px;
+      width: 30px;
+
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__characters-title {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: gray;
+  }
+
+  &__characters-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

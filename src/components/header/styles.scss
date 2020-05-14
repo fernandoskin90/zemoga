@@ -1,0 +1,184 @@
+.header {
+  height: 450px;
+  position: relative;
+
+  background-image: url('https://cope-cdnmed.agilecontent.com/resources/jpg/6/4/1588627919746.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+
+  .nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    color: #ffffff;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      transparent
+    );
+
+    &__logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    &__menu {
+      a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: lighter;
+      }
+    }
+  }
+
+  &__content {
+    height: 280px;
+  }
+
+  .main-card {
+    height: 300px;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__content {
+      backdrop-filter: blur(20px);
+      height: calc(100% - 50px);
+      padding: 20px;
+    }
+
+    &__title {
+      color: rgb(215, 209, 209);
+      display: flex;
+      flex-direction: column;
+      font-size: 0.9rem;
+
+      span {
+        color: #ffffff;
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+    }
+
+    &__description {
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+
+    &__more-info {
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 5px;
+        margin-bottom: 5px;
+        text-decoration: underline;
+      }
+    }
+
+    &__verdict {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    &__thumb {
+      position: absolute;
+      height: 50px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      display: flex;
+    }
+
+    &__thumbup,
+    &__thumbdown {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    &__thumbup {
+      background-color: rgba(44, 187, 180, 0.6);
+    }
+
+    &__thumbdown {
+      background-color: rgba(#feb333, 0.6);
+    }
+  }
+
+  &__closing {
+    background-color: rgba(255, 255, 255, 0.15);
+    height: 50px;
+    padding-left: 210px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    &-text {
+      font-size: 1.2rem;
+      width: 120px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        border: solid 7px transparent;
+        border-left-color: #be9185;
+        right: -14px;
+        z-index: 4;
+      }
+    }
+
+    &-number-days {
+      color: #606060;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-left: 10px;
+      z-index: 2;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+    }
+
+    &::before {
+      background-color: rgba(255, 255, 255, 0.6);
+      width: calc(100% - 330px);
+      height: 100%;
+      right: 0;
+    }
+
+    &::after {
+      content: 'days';
+      left: 380px;
+      color: #767674;
+      font-size: 1.45rem;
+    }
+  }
+}
