@@ -3,10 +3,11 @@ import {
   HashRouter as Router,
   Redirect,
   Route,
-  Switch
-} from 'react-router-dom'
+  Switch,
+} from 'react-router-dom';
+import { characters } from './constants';
 
-import { Login} from './pages/login';
+import { Login } from './pages/login';
 import { PastTrials } from './pages/past-trials';
 import { HowItWorks } from './pages/how-it-works';
 
@@ -15,9 +16,10 @@ import { Header } from './components/header';
 
 import { PATHS } from './constants';
 
-import './app.scss'
+import './app.scss';
 
 export const App = () => {
+  localStorage.setItem('characters', JSON.stringify(characters));
   return (
     <Router>
       <Header />
