@@ -1,20 +1,17 @@
 import React from 'react';
 
 import { CharacterCard } from '../../components/character-card';
-import { useData } from '../../hooks/useData';
+import { useCharacters } from '../../hooks/useCharacters';
 
 import './styles.scss';
 
 export function PastTrials() {
   const {
-    handleActive,
-    handleVotes,
-    active,
     characters,
-    showMessage,
-    characterActive,
-    setShowMessage,
-  } = useData();
+    vote,
+    voteAgain
+  } = useCharacters();
+
   return (
     <section className="past-trials">
       <div className="past-trials__banner">
@@ -30,21 +27,17 @@ export function PastTrials() {
         </div>
 
         <div className="past-trials__banner-close-icon">
-          <i className="material-icons">close</i>
+          <i className="fas fa-times"></i>
         </div>
       </div>
       <div className="past-trials__characters-title">Votes</div>
       <div className="past-trials__characters-list">
-        {characters.map(character => (
+        {characters.map((character, index) => (
           <CharacterCard
-            isActive={characterActive === character.id}
             key={character.id}
             character={character}
-            handleActive={handleActive}
-            active={active}
-            handleVotes={handleVotes}
-            showMessage={showMessage}
-            setShowMessage={setShowMessage}
+            vote={vote(index)}
+            voteAgain={voteAgain(index)}
           />
         ))}
       </div>

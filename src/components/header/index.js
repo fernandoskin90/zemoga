@@ -29,7 +29,7 @@ export const Header = () => (
 
           <div className="main-card__more-info">
             <div className="more-info-icon">
-              <i className="material-icons">waves</i>
+              <i className="fab fa-wordpress-simple"></i>
             </div>
             <span>More information</span>
           </div>
@@ -41,10 +41,10 @@ export const Header = () => (
 
         <div className="main-card__thumb">
           <div className="main-card__thumbup">
-            <i className="material-icons md-48">thumb_up</i>
+            <i className="far fa-thumbs-up"></i>
           </div>
           <div className="main-card__thumbdown ">
-            <i className="material-icons md-48">thumb_down</i>
+            <i className="far fa-thumbs-down"></i>
           </div>
         </div>
       </div>

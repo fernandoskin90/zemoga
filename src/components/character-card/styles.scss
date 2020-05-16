@@ -21,6 +21,10 @@ $down-color: #feb333;
     margin-bottom: 10px;
   }
 
+  &__description {
+    height: 68px;
+  }
+
   &__time-ago {
     span {
       margin-right: 5px;
@@ -31,6 +35,8 @@ $down-color: #feb333;
   &__thank-you {
     display: flex;
     flex-direction: column;
+    height: 109px;
+    justify-content: flex-end;
 
     span {
       color: #ffffff;
@@ -59,8 +65,9 @@ $down-color: #feb333;
       background-color: $down-color;
     }
 
-    .material-icons {
+    .far {
       color: #ffffff;
+      font-size: 1.5rem;
     }
   }
 
@@ -87,13 +94,15 @@ $down-color: #feb333;
     outline: none;
     margin: 0 5px;
 
-    .material-icons {
-      color: #ffffff;
-    }
-
     &.--up-active,
     &.--down-active {
       border: solid 3px #ffffff;
+    }
+
+    .far {
+      font-size: 1.5rem;
+      color: white;
+      padding: 5px;
     }
   }
 
@@ -126,7 +135,9 @@ $down-color: #feb333;
     align-items: center;
     padding: 0 10px;
 
-    .material-icons {
+    .far {
+      font-size: 1.5rem;
+      color: white;
       margin-right: 5px;
     }
   }

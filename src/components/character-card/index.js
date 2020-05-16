@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useCharacter } from '../../hooks/useCharacter';
+
 import './styles.scss';
 
 export function CharacterCard({
@@ -12,28 +14,34 @@ export function CharacterCard({
     name,
     timeAgo,
     id,
+    wasVoted
   },
-  active,
-  handleActive,
-  handleVotes,
-  showMessage,
-  setShowMessage,
-  isActive,
+  vote,
+  voteAgain
 }) {
+  const {
+    clearLastVote,
+    isVotingFor,
+    selectDown,
+    selectUp
+  } = useCharacter();
+
   const totalVotes = againstVotes + forVotes;
   const percentage = {
-    for: (forVotes * 100) / totalVotes,
-    againts: (againstVotes * 100) / totalVotes,
+    for: Number((forVotes * 100) / totalVotes).toFixed(1),
+    againts: 0,
   };
+  percentage.againts = Number(100 - percentage.for).toFixed(1);
+
   const isFor = forVotes > againstVotes;
-  const trendingVotesIcon = isFor ? 'thumb_up' : 'thumb_down';
+  const trendingVotesIcon = isFor ? 'fa-thumbs-up' : 'fa-thumbs-down';
 
   const floatinButtonClass = `character-card__floating-votes-icon ${
     isFor ? '--up' : '--down'
   }`;
 
-  const upActive = active === 'up' && isActive ? '--up-active' : '';
-  const downActive = active === 'down' && isActive ? '--down-active' : '';
+  const upActive = isVotingFor === true ? '--up-active' : '';
+  const downActive = isVotingFor === false ? '--down-active' : '';
 
   return (
     <div
@@ -43,7 +51,7 @@ export function CharacterCard({
       <div className="character-card__content">
         <div className="character-card__name">
           <div className={floatinButtonClass}>
-            <i className="material-icons">{trendingVotesIcon}</i>
+            <i className={`far ${trendingVotesIcon}`}></i>
           </div>
           {name}
         </div>
@@ -51,13 +59,14 @@ export function CharacterCard({
           <span>{timeAgo}</span>
           {jobArea}
         </div>
-        {showMessage && isActive ? (
+        {wasVoted ? (
           <div className="character-card__thank-you">
             <span>Thank you for voting!</span>
             <button
               className="character-card__vote-again"
               onClick={() => {
-                setShowMessage(false);
+                voteAgain();
+                clearLastVote();
               }}
             >
               Vote again
@@ -69,25 +78,19 @@ export function CharacterCard({
             <div className="character-card__vote-form">
               <button
                 className={`character-card__thumbup ${upActive}`}
-                onClick={() => {
-                  handleActive('up', id);
-                }}
+                onClick={selectUp}
               >
-                <i className="material-icons">thumb_up</i>
+                <i className="far fa-thumbs-up"></i>
               </button>
               <button
                 className={`character-card__thumbdown ${downActive}`}
-                onClick={() => {
-                  handleActive('down', id);
-                }}
+                onClick={selectDown}
               >
-                <i className="material-icons">thumb_down</i>
+                <i className="far fa-thumbs-down"></i>
               </button>
               <button
                 className="character-card__vote-button"
-                onClick={() => {
-                  handleVotes(id);
-                }}
+                onClick={() => vote(isVotingFor)}
               >
                 Vote now
               </button>
@@ -100,14 +103,14 @@ export function CharacterCard({
           className="character-card__for-bar"
           style={{ width: `${percentage.for}%` }}
         >
-          <i className="material-icons">thumb_up</i>
+          <i className="far fa-thumbs-up"></i>
           {percentage.for}%
         </div>
         <div
           className="character-card__against-bar"
           style={{ width: `${percentage.againts}%` }}
         >
-          <i className="material-icons">thumb_down</i>
+          <i className="far fa-thumbs-down"></i>
           {percentage.againts}%
         </div>
       </div>

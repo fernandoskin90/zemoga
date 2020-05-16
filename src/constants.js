@@ -5,9 +5,6 @@ export const PATHS = {
   SIGN_UP: '/signup',
 };
 
-export const URL_DATA =
-  'https://my-json-server.typicode.com/nando77/fakedb/characters';
-
 export const characters = [
   {
     againstVotes: 36,

@@ -35,6 +35,7 @@ export const useData = () => {
     setCharacters(prevCharacters => {
       const modifiedCharacters = [...prevCharacters];
       modifiedCharacters[indexCharacterToUpdate] = currentCharacter;
+      modifiedCharacters[indexCharacterToUpdate].wasVoted = true;
       return modifiedCharacters;
     });
     setActive('');
@@ -55,6 +56,11 @@ export const useData = () => {
       localStorage.setItem('characters', JSON.stringify(data));
     }
   }, []);
+
+  useEffect(() => {
+    if (!showMessage) {
+    }
+  }, [showMessage]);
 
   return {
     handleActive,

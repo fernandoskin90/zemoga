@@ -13,8 +13,10 @@ export function Footer() {
       <section className="footer__media">
         <div className="footer__media-item">Follow Us</div>
         <div className="footer__media-item">
-          <i className="material-icons">facebook</i>
-          <i className="material-icons">twitter</i>
+          <i className="fab fa-facebook-f"></i>
+        </div>
+        <div className="footer__media-item">
+          <i className="fab fa-twitter"></i>
         </div>
       </section>
     </footer>
