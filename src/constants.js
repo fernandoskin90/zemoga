@@ -20,6 +20,7 @@ export const characters = [
     jobArea: 'Entertainment',
     name: 'Kanye West',
     timeAgo: '1 month ago',
+    wasVoted: false,
   },
   {
     againstVotes: 64,
@@ -32,6 +33,7 @@ export const characters = [
     jobArea: 'Business',
     name: 'Mark Zuckerberg',
     timeAgo: '1 month ago',
+    wasVoted: false,
   },
   {
     againstVotes: 64,
@@ -44,6 +46,7 @@ export const characters = [
     jobArea: 'Politics',
     name: 'Cristina Fernández de Kirchner',
     timeAgo: '1 month ago',
+    wasVoted: false,
   },
   {
     againstVotes: 36,
@@ -56,5 +59,6 @@ export const characters = [
     jobArea: 'Entertainment',
     name: 'Malala Yousafzai',
     timeAgo: '1 month ago',
+    wasVoted: false,
   },
 ];

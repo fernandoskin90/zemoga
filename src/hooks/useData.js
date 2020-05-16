@@ -2,58 +2,57 @@ import { useState, useEffect } from 'react';
 import { characters as data } from '../constants';
 
 export const useData = () => {
-  const [characters, setCharacter] = useState([]);
+  const [characters, setCharacters] = useState(() => {
+    if (!localStorage.getItem('characters')) {
+      return data;
+    } else {
+      return JSON.parse(localStorage.getItem('characters'));
+    }
+  });
   const [active, setActive] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+  const [characterActive, setCharacterActive] = useState(null);
 
-  const handleActive = (thumbActive) => {
+  const handleActive = (thumbActive, id) => {
     setActive(thumbActive);
+    setCharacterActive(id);
   };
 
-  // const setLocalStorage = () => {
-  //   const indexCharacter = allCharacters.findIndex(
-  //     ({ id }) => id === idCharacter
-  //   );
-  //   let currentCharacter = allCharacters.find(({ id }) => id === idCharacter);
-  //   currentCharacter['againstVotes'] = aVotes;
-  //   currentCharacter['forVotes'] = fVotes;
-  //   allCharacters[indexCharacter] = currentCharacter;
-  //   localStorage.setItem('characters', JSON.stringify(allCharacters));
-  // };
+  const setLocalStorage = (
+    typeVote,
+    currentCharacter,
+    indexCharacterToUpdate
+  ) => {
+    currentCharacter.againstVotes =
+      typeVote === 'up'
+        ? currentCharacter.againstVotes - 1
+        : currentCharacter.againstVotes + 1;
+    currentCharacter.forVotes =
+      typeVote === 'down'
+        ? currentCharacter.forVotes - 1
+        : currentCharacter.forVotes + 1;
+    localStorage.setItem('characters', JSON.stringify(characters));
+    setCharacters(prevCharacters => {
+      const modifiedCharacters = [...prevCharacters];
+      modifiedCharacters[indexCharacterToUpdate] = currentCharacter;
+      return modifiedCharacters;
+    });
+    setActive('');
+    setShowMessage(true);
+    setCharacterActive(null);
+  };
 
-  const handleVotes = (idCharacter) => {
-    if (characters.length) {
-      if (active === 'up') {
-        const indexCharacter = characters.findIndex(
-          ({ id }) => id === idCharacter
-        );
-        let currentCharacter = characters.find(({ id }) => id === idCharacter);
-        currentCharacter.againstVotes = currentCharacter.againstVotes - 1;
-        currentCharacter.forVotes = currentCharacter.forVotes + 1;
-        characters[indexCharacter] = currentCharacter;
-        console.log(currentCharacter);
-        setCharacter(characters);
-        localStorage.setItem('characters', JSON.stringify(characters));
-      }
-      if (active === 'down') {
-        const indexCharacter = characters.findIndex(
-          ({ id }) => id === idCharacter
-        );
-        let currentCharacter = characters.find(({ id }) => id === idCharacter);
-        currentCharacter['againstVotes'] = currentCharacter['againstVotes'] + 1;
-        currentCharacter['forVotes'] = currentCharacter['forVotes'] - 1;
-        characters[indexCharacter] = currentCharacter;
-        setCharacter(characters);
-        localStorage.setItem('characters', JSON.stringify(characters));
-      }
-    }
+  const handleVotes = idCharacter => {
+    const indexCharacterToUpdate = characters.findIndex(
+      ({ id }) => id === idCharacter
+    );
+    const currentCharacter = characters.find(({ id }) => id === idCharacter);
+    setLocalStorage(active, currentCharacter, indexCharacterToUpdate);
   };
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem('characters')).length) {
-      setCharacter(data);
+    if (!localStorage.getItem('characters')) {
       localStorage.setItem('characters', JSON.stringify(data));
-    } else {
-      setCharacter(JSON.parse(localStorage.getItem('characters')));
     }
   }, []);
 
@@ -62,5 +61,8 @@ export const useData = () => {
     handleVotes,
     active,
     characters,
+    showMessage,
+    characterActive,
+    setShowMessage,
   };
 };

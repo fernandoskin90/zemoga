@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { characters } from './constants';
 
 import { Login } from './pages/login';
 import { PastTrials } from './pages/past-trials';
@@ -19,7 +18,6 @@ import { PATHS } from './constants';
 import './app.scss';
 
 export const App = () => {
-  localStorage.setItem('characters', JSON.stringify(characters));
   return (
     <Router>
       <Header />

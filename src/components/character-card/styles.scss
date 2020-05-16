@@ -4,7 +4,7 @@ $down-color: #feb333;
 .character-card {
   background-size: cover;
   background-repeat: no-repeat;
-  color: #FFFFFF;
+  color: #ffffff;
   height: 600px;
   width: 500px;
   margin: 10px;
@@ -25,6 +25,17 @@ $down-color: #feb333;
     span {
       margin-right: 5px;
       text-decoration: underline;
+    }
+  }
+
+  &__thank-you {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      color: #ffffff;
+      font-size: 1rem;
+      margin-bottom: 30px;
     }
   }
 
@@ -49,7 +60,7 @@ $down-color: #feb333;
     }
 
     .material-icons {
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
@@ -77,7 +88,12 @@ $down-color: #feb333;
     margin: 0 5px;
 
     .material-icons {
-      color: #FFFFFF;
+      color: #ffffff;
+    }
+
+    &.--up-active,
+    &.--down-active {
+      border: solid 3px #ffffff;
     }
   }
 
@@ -89,13 +105,13 @@ $down-color: #feb333;
     background-color: $down-color;
   }
 
-  &__vote-button {
+  &__vote-button,
+  &__vote-again {
     background-color: rgba(0, 0, 0, 0.5);
-    border: solid 2px #FFFFFF;
-    color: #FFFFFF;
+    border: solid 2px #ffffff;
+    color: #ffffff;
     padding: 6px;
   }
-
   &__votes-container {
     display: flex;
     height: 50px;
